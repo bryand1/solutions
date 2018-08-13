@@ -2,7 +2,7 @@
 
 **Source:** leetcode
 
-Given a string containing just the characters <pre>'('</pre>, <pre>')'</pre>, <pre>'{'</pre>, <pre>'}'</pre>, <pre>'['</pre> and <pre>']'</pre>, determine if the input string is valid.
+Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
 An input string is valid if:
 
