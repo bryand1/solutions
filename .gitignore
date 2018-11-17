@@ -1,4 +1,5 @@
 *.py[oc]
+build
+node_modules
 .*
 !.gitignore
-build
