@@ -12,9 +12,9 @@ const codes = {
 export default class Allergies {
   constructor(code) {
     this.allergies = [];
-    for (let k in codes) {
+    Object.keys(codes).forEach((k) => {
       if (code & k) this.allergies.push(codes[k]);
-    }
+    });
   }
 
   list() {
