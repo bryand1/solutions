@@ -10,6 +10,6 @@ const points = {
 
 export default (str) => {
     return (str || '').split('').reduce((sum, letter) => {
-      return sum + (points[letter.toUpperCase()] || 0)
+      return sum + (points[letter.toUpperCase()] || 0);
     }, 0);
 };
