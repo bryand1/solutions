@@ -9,6 +9,7 @@ const points = {
 };
 
 export default (str) => {
-    if (!str) return 0;
-    return str.split('').map(letter => points[letter.toUpperCase()] || 0).reduce((a, b) => a + b);
+    return (str || '').split('').reduce((sum, letter) => {
+      return sum + (points[letter.toUpperCase()] || 0)
+    }, 0);
 };
