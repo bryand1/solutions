@@ -7,14 +7,17 @@ def gcd(a, b):
     return gcd(b % a, a)
 
 
-def find_all_gcd(s, path=[], seen=set()):
-    path = path + [reduce(gcd, s)]
-    if len(s) == 1:
+def find_all_gcd(s, path=[1]):
+    if s:
+        path = path + [reduce(gcd, s)]
+
+    if len(s) <= 1:
         return [path]
+
     paths = []
     for i in s:
-        newpaths = find_all_gcd(s - set([i]), path, seen)
-        for newpath in newpaths:
+        newpaths = find_all_gcd(s - {i}, path)
+        for newpath in set(map(tuple, newpaths)):
             paths.append(newpath)
     return paths
 
@@ -27,6 +30,6 @@ def lexicographic_sort(a, b):
 
 
 if __name__ == '__main__':
-    s = set(range(1, int(input()) + 1))
+    s = set(range(2, int(input()) + 1))
     paths = sorted(find_all_gcd(s), key=cmp_to_key(lexicographic_sort))
     print(' '.join(map(str, paths[0])))
