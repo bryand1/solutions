@@ -1,4 +1,5 @@
-from functools import reduce, cmp_to_key
+from functools import cmp_to_key, reduce
+from math import ceil
 
 
 def gcd(a, b):
@@ -7,7 +8,7 @@ def gcd(a, b):
     return gcd(b % a, a)
 
 
-def find_all_gcd(s, path=[1]):
+def find_all_gcd(s, path=[]):
     if s:
         path = path + [reduce(gcd, s)]
 
@@ -30,6 +31,15 @@ def lexicographic_sort(a, b):
 
 
 if __name__ == '__main__':
-    s = set(range(2, int(input()) + 1))
-    paths = sorted(find_all_gcd(s), key=cmp_to_key(lexicographic_sort))
-    print(' '.join(map(str, paths[0])))
+    n = int(input())
+    if n == 1 or n == 2:
+        print(' '.join(map(str, range(1, n + 1))))
+    elif n == 3:
+        print('1 1 3')
+    else:
+        path = [1] * int(ceil(n / 2))
+        path.append(2)
+        s = set(range(4, n + 1, 2))
+        paths = find_all_gcd(s)
+        paths.sort(key=cmp_to_key(lexicographic_sort))
+        print(' '.join(map(str, path + list(paths[0]))))
