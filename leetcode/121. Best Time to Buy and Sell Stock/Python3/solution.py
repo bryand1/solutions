@@ -1,27 +1,21 @@
 """
-Recursive solution is too slow to work for certain test cases
+LeetCode 121. Best Time to Buy Stock
 """
+
 class Solution:
-    def maxProfitRec(self, prices, index, purchase_price=None):
-        if index == len(prices):
-            return 0
-        if purchase_price is None:
-            # Buy or hold
-            return max(
-                self.maxProfitRec(prices, index + 1, prices[index]),
-                self.maxProfitRec(prices, index + 1))
-        else:
-            # Sell or hold
-            return max(
-                prices[index] - purchase_price,
-                self.maxProfitRec(prices, index + 1, purchase_price))
 
     def maxProfit(self, prices):
         """
         :type prices: List[int]
         :rtype: int
         """
-        return self.maxProfitRec(prices, 0)
+        max_profit = 0
+        min_price = float('inf')
+        for px in prices:
+            min_price = min(min_price, px)
+            profit = px - min_price
+            max_profit = max(max_profit, profit)
+        return max_profit
 
 
 if __name__ == '__main__':
