@@ -28,7 +28,7 @@ class Solution:
                 if matrix[i - 1][j - 1] == "1":
                     T[i][j] = 1 + min(T[i][j - 1], T[i - 1][j - 1], T[i - 1][j])
                     smax = max(smax, T[i][j])
-        return smax
+        return smax ** 2
 
 
 if __name__ == '__main__':
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         ["1", "1", "1", "1", "1"],
         ["1", "0", "0", "1", "0"],
     ]    
-    print(solution.maximalSquare(ex1))  # 2
+    print(solution.maximalSquare(ex1))  # 4
 
     ex2 = [
         ["0", "0", "0", "0", "1", "1", "1", "0", "0", "0"],
@@ -49,7 +49,15 @@ if __name__ == '__main__':
         ["0", "0", "0", "0", "0", "0", "0", "0", "1", "1"],
         ["1", "1", "1", "0", "0", "0", "0", "0", "0", "0"],
     ]
-    print(solution.maximalSquare(ex2))  # 3
+    print(solution.maximalSquare(ex2))  # 9
 
     ex3 = [["0"]]
-    print(solution.maximalSquare(ex3))
+    print(solution.maximalSquare(ex3))  # 0
+
+    ex4 = [
+        ["1","0","1","0","0"],
+        ["1","0","1","1","1"],
+        ["1","1","1","1","1"],
+        ["1","0","0","1","0"]
+    ]
+    print(solution.maximalSquare(ex4))  # 4
