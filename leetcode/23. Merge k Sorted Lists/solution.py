@@ -1,3 +1,10 @@
+# 23. Merge k Sorted Lists
+#
+# Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+#
+# Time: O(n * lg(k))
+# Space: O(k)  (data held in the heap)
+# 
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -10,24 +17,20 @@ class Solution(object):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
-        """
-        
-        k = len(lists)
-        pointers = [0] * k
+        """ 
         heap = []
-        for i in range(k):
+        for i in range(len(lists)):
             if lists[i]:
-                pointers[i] = lists[i]
-                heappush(heap, (pointers[i].val, i))
+                heappush(heap, (lists[i].val, i))
 
         root = ListNode(0)
-        res = root
+        curr = root
         while heap:
             min_val, i = heappop(heap)
-            res.next = ListNode(min_val)
-            res = res.next
-            pointers[i] = pointers[i].next
-            if pointers[i]:
-                heappush(heap, (pointers[i].val, i))
+            curr.next = ListNode(min_val)
+            curr = curr.next
+            lists[i] = lists[i].next
+            if lists[i]:
+                heappush(heap, (lists[i].val, i))
 
         return root.next
