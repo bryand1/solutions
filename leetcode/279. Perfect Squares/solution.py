@@ -11,18 +11,11 @@ from math import sqrt, floor
 class Solution:
     
     def numSquares(self, n: int) -> int:
-        T = [[0 for _ in range(n + 1)] for _ in range(floor(sqrt(n)) + 1)]
-        for i in range(n + 1):
-            T[0][i] = i
-        for i in range(1, len(T)):
+        T = list(range(n + 1))
+        for i in range(1, floor(sqrt(n)) + 1):
             sq = i * i
             for j in range(1, n + 1):
-                div = j // sq 
-                if div == 0:
-                    T[i][j] = T[i - 1][j]
-                else:
-                    T[i][j] = min(
-                        T[i - 1][j],
-                        div + T[i - 1][j % sq]
-                    )
-        return T[-1][n]
+                div = j // sq
+                if div:
+                    T[j] = min(T[j], div + T[j % sq])
+        return T[n]
