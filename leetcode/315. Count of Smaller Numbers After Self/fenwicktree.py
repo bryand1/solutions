@@ -1,29 +1,30 @@
+# 315. Count of Smaller Numbers After Self
 class BinaryIndexedTree:
 
     def __init__(self, n):
-        self.sums = [0] * (n + 1)
+        self.tree = [0] * (n + 1)
     
     def update(self, i, v):
-        while i < len(self.sums):
-            self.sums[i] += v
+        while i < len(self.tree):
+            self.tree[i] += v
             i += i & (-i)
-    
-    def sum(self, i):
-        r = 0
+
+    def getsum(self, i):
+        s = 0
         while i > 0:
-            r += self.sums[i]
+            s += self.tree[i]
             i -= i & (-i)
-        return r
+        return s
 
 
 class Solution:
     def countSmaller(self, nums):
-        hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
-        tree = BinaryIndexedTree(len(hash_table))
+        rank = {v: i for i, v in enumerate(sorted(set(nums)))}
+        bit = BinaryIndexedTree(len(rank))
         res = []
         for i in range(len(nums) - 1, -1, -1):
-            res.append(tree.sum(hash_table[nums[i]]))
-            tree.update(hash_table[nums[i]] + 1, 1)
+            res.append(bit.getsum(rank[nums[i]]))
+            bit.update(rank[nums[i]] + 1, 1)
         return res[::-1]
 
 
