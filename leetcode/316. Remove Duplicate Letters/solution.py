@@ -35,3 +35,6 @@ if __name__ == '__main__':
 
     ex3 = "rusrbofeggbbkyuyjsrzornpdguwzizqszpbicdquakqws"
     print(solution.removeDuplicateLetters(ex3))
+
+    ex4 = "bcabc"
+    print(solution.removeDuplicateLetters(ex4))
