@@ -20,4 +20,3 @@ class Solution:
 
         if o < c and o == 0:
             self.helper(o, c - 1, combination + ')')
-
