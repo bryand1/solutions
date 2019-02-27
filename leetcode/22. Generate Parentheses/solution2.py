@@ -5,7 +5,7 @@ class Solution:
         return res
 
     def helper(self, l, r, s, res):
-        if l < 0 or r < 0 or l < r:
+        if l < 0 or r < 0 or l > r:
             return
         if l == 0 and r == 0:
             res.append(s)
